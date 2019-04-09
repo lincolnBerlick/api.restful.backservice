@@ -3,6 +3,7 @@ package com.restful.api.sources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,9 +42,9 @@ public class UsuarioController {
 	
 	@ApiOperation(value ="retorna um usuario")
 	@GetMapping("/usuario/{id}")
-	public Usuario listaUser(@PathVariable(value="id") long id){
+	public Usuario listaUser(@PathVariable(value="id") String id){
 	
-		return usuariorepository.findById(id);
+		return usuariorepository.findByemail(id);
 		
 		
 	}
@@ -57,6 +58,7 @@ public class UsuarioController {
 	
 	@ApiOperation(value ="deleta um usuario")
 	@DeleteMapping("/usuario")
+	@PreAuthorize("hasRole('ADMIN')")
 	public void deleterUsuario(@RequestBody Usuario usuario) {
 		usuariorepository.delete(usuario);
 	}
