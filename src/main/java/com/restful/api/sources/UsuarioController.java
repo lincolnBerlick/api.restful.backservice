@@ -3,7 +3,11 @@ package com.restful.api.sources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +35,18 @@ public class UsuarioController {
 	
 	@Autowired
 	UsuarioRepository usuariorepository;
+	
+	
+	
+	@GetMapping(path="/{id}")
+	public ResponseEntity<?> getuserbyid(@PathVariable long id, @AuthenticationPrincipal UserDetails userDetails){
+		
+		Usuario usuario = usuariorepository.findById(id);
+		return new ResponseEntity<>(usuario, HttpStatus.OK);
+		
+		
+		
+	}
 	
 	@GetMapping("/usuario")
 	@ApiOperation(value ="retorna lista de usuarios")
