@@ -41,10 +41,10 @@ public class UsuarioController {
 	}
 	
 	@ApiOperation(value ="retorna um usuario")
-	@GetMapping("/usuario/{id}")
-	public Usuario listaUser(@PathVariable(value="id") String id){
+	@GetMapping("/usuario/{name}")
+	public Usuario listaUser(@PathVariable(value="name") String name){
 	
-		return usuariorepository.findByemail(id);
+		return usuariorepository.findByusername(name);
 		
 		
 	}

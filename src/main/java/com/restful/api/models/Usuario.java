@@ -20,11 +20,16 @@ public class Usuario  implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long user_id;
 	
-	private String user_name;
 	
+	@Column(name = "user_name")
+	private String username;
+	
+	
+
 	@Column(name = "user_email")
 	private String email;
 	
+	@Column(name = "user_senha")
 	private String user_Senha;
 	
 	private int user_type;
@@ -37,12 +42,12 @@ public class Usuario  implements Serializable {
 		this.user_id = user_id;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
