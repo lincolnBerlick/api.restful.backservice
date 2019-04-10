@@ -38,10 +38,11 @@ public class UsuarioController {
 	
 	
 	
-	@GetMapping(path="/{id}")
-	public ResponseEntity<?> getuserbyid(@PathVariable long id, @AuthenticationPrincipal UserDetails userDetails){
+	@GetMapping(path="/usuario/byid/{id}")
+	public ResponseEntity<?> getuserbyid(@PathVariable(value ="id") long id, @AuthenticationPrincipal UserDetails userDetails){
 		
 		Usuario usuario = usuariorepository.findById(id);
+		System.out.println(usuario);
 		return new ResponseEntity<>(usuario, HttpStatus.OK);
 		
 		
@@ -52,7 +53,7 @@ public class UsuarioController {
 	@ApiOperation(value ="retorna lista de usuarios")
 	public List<Usuario> listaUsers(){
 		
-		return usuariorepository.findAll();
+		return (List<Usuario>) usuariorepository.findAll();
 		
 		
 	}
