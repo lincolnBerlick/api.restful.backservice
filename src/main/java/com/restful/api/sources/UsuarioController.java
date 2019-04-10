@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +54,8 @@ public class UsuarioController {
 	@ApiOperation(value ="salva um usuario")
 	@PostMapping("/usuario")
 	public Usuario salvarUsuario(@RequestBody Usuario usuario) {
+		BCryptPasswordEncoder passencode = new BCryptPasswordEncoder();
+		usuario.setUser_Senha(passencode.encode(usuario.getUser_Senha()));
 		return usuariorepository.save(usuario);
 		
 	}
