@@ -49,6 +49,7 @@ public class UsuarioController {
 		
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@ApiOperation(value ="salva um usuario")
 	@PostMapping("/usuario")
 	public Usuario salvarUsuario(@RequestBody Usuario usuario) {
@@ -62,6 +63,7 @@ public class UsuarioController {
 	public void deleterUsuario(@RequestBody Usuario usuario) {
 		usuariorepository.delete(usuario);
 	}
+	
 	
 	@ApiOperation(value ="atualiza um usuario")
 	@PutMapping("/usuario")
