@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 
 
 @RestController
-@RequestMapping(value="/api")
+@RequestMapping(value="/v1")
 @Api(value="API EstoqueDB")
 @CrossOrigin(origins = "*")
 public class UsuarioController {
@@ -38,6 +38,7 @@ public class UsuarioController {
 	
 	
 	
+	@ApiOperation(value ="retorna um usuario pelo ID busca Long")
 	@GetMapping(path="/usuario/byid/{id}")
 	public ResponseEntity<?> getuserbyid(@PathVariable(value ="id") long id, @AuthenticationPrincipal UserDetails userDetails){
 		
@@ -58,8 +59,8 @@ public class UsuarioController {
 		
 	}
 	
-	@ApiOperation(value ="retorna um usuario")
-	@GetMapping("/usuario/{name}")
+	@ApiOperation(value ="retorna um usuario pelo nome busca String")
+	@GetMapping("/usuario/byname/{name}")
 	public Usuario listaUser(@PathVariable(value="name") String name){
 	
 		return usuariorepository.findByusername(name);

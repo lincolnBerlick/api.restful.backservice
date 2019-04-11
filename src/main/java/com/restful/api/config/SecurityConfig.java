@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.anyRequest().authenticated()
+		.antMatchers("/*/usuario/**").hasRole("USER") // AQUI DETERMINO O GRUPO DE USUARIOS PERMITIDOS
 		.and()
 		.httpBasic()
 		.and()

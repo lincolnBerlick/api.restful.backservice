@@ -27,7 +27,7 @@ public class swaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.restful.api"))
-                .paths(regex("/api.*"))
+                .paths(regex("/v1.*"))
                 .build()
                 .apiInfo(metaInfo());
     }

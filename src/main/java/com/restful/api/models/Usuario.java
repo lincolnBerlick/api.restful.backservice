@@ -78,6 +78,12 @@ public class Usuario  implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [user_id=" + user_id + ", username=" + username + ", email=" + email + ", user_Senha="
+				+ user_Senha + ", user_type=" + user_type + "]";
+	}
 	
 	
 	
